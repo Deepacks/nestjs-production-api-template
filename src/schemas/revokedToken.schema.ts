@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema()
 export class RevokedToken {
-  _id: mongoose.Schema.Types.ObjectId;
+  _id: Types.ObjectId;
 
   @Prop({ required: true })
   userId: string;

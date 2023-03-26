@@ -11,8 +11,6 @@ import { RevokedTokenModule } from '../modules/revokedToken/revokedToken.module'
 
 @Module({
   imports: [
-    UserAccountModule,
-    RevokedTokenModule,
     PassportModule.register({
       defaultStrategy: 'jwt',
       property: 'user',
@@ -26,9 +24,11 @@ import { RevokedTokenModule } from '../modules/revokedToken/revokedToken.module'
         };
       },
     }),
+
+    UserAccountModule,
+    RevokedTokenModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
-  exports: [PassportModule, JwtModule],
 })
 export class AuthModule {}

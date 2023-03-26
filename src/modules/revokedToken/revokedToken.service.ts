@@ -22,9 +22,10 @@ export class RevokedTokenService {
 
   async find(jwt: TokenDto): Promise<RevokedTokenDocument> {
     const { userId, iat, exp } = jwt;
-    const revokedToken = await this.revokedTokenModel
-      .findOne({ userId, iat, exp })
-      .exec();
-    return revokedToken;
+    return this.revokedTokenModel.findOne({
+      userId,
+      iat,
+      exp,
+    });
   }
 }

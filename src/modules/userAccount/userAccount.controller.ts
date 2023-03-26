@@ -2,21 +2,22 @@ import { Controller, Delete, Get, Req, UseGuards } from '@nestjs/common';
 
 import { UserAccountService } from './userAccount.service';
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
+import { AuthRequest } from 'src/auth/types/auth.type';
 import { UserSessionDto } from './dto/userSession.dto';
 
 @Controller('user')
 export class UserAccountController {
   constructor(private userAccountService: UserAccountService) {}
 
-  @Get('session')
+  @Get('data')
   @UseGuards(JwtAuthGuard)
-  getUserSession(@Req() req: any): Promise<UserSessionDto> {
-    return this.userAccountService.getUserSessionById(req.user._id as string);
+  getUserData(@Req() req: AuthRequest): Promise<UserSessionDto> {
+    return this.userAccountService.getUserDataById(req.user.userId);
   }
 
   @Delete()
   @UseGuards(JwtAuthGuard)
-  deleteUser(@Req() req: any) {
-    this.userAccountService.delete(req.user._id as string);
+  deleteUser(@Req() req: AuthRequest) {
+    this.userAccountService.delete(req.user.userId);
   }
 }

@@ -1,16 +1,27 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 
-import { configureMongooseModule } from './configs/db/database.configuration';
-import { configureEnvModule } from './configs/env/environment.configuration';
+import { getEnvVar } from './helpers/getEnvVar.helper';
 import { AuthModule } from './auth/auth.module';
 import { UserAccountModule } from './modules/userAccount/userAccount.module';
-import { HttpLoggerMiddleware } from './middlewares/logger.middleware';
 import { RevokedTokenModule } from './modules/revokedToken/revokedToken.module';
+import { HttpLoggerMiddleware } from './middlewares/logger.middleware';
 
 @Module({
   imports: [
-    configureEnvModule(),
-    configureMongooseModule(),
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      useFactory: () => ({
+        uri: `mongodb://${getEnvVar('MONGO_HOST')}:${getEnvVar(
+          'MONGO_PORT',
+        )}/${getEnvVar('MONGO_DB_NAME')}`,
+        authSource: getEnvVar('MONGO_AUTH_SOURCE'),
+        user: getEnvVar('MONGO_USER'),
+        pass: getEnvVar('MONGO_PASS'),
+      }),
+    }),
+
     AuthModule,
     UserAccountModule,
     RevokedTokenModule,
