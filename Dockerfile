@@ -1,13 +1,18 @@
-FROM node:16.15.1-alpine3.16
+FROM node:16.18.1-alpine3.16
+
+RUN npm install --location=global npm && \
+    npm install --location=global pnpm
 
 WORKDIR /usr/src/app
 
-COPY package.json package.json
+COPY package.json pnpm-lock.yaml ./
 
-RUN yarn --prod && yarn cache clean --force
+RUN pnpm i
 
 COPY . .
 
-RUN yarn build
+RUN pnpm build && \
+    rm -rf src node_modules pnpm-lock.yaml && \
+    pnpm i --prod && pnpm store prune
 
-CMD [ "yarn", "start:prod" ]
+CMD [ "pnpm", "start:prod" ]

@@ -4,7 +4,7 @@
 
 ## Description
 
-A prodution ready server build with [Nest](https://github.com/nestjs/nest)
+A prodution ready server built with [Nest](https://github.com/nestjs/nest)
 
 - MongoDB configuration
 - Default user model with email and password
@@ -16,29 +16,29 @@ A prodution ready server build with [Nest](https://github.com/nestjs/nest)
 ## Installation
 
 ```bash
-$ yarn
+$ pnpm i
 
 # exclude dev dependencies
-$ yarn --prod
+$ pnpm i --prod
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ yarn start
+$ pnpm start
 
 # watch mode
-$ yarn start:dev
+$ pnpm start:dev
 
 # production mode
-$ yarn start:prod
+$ pnpm start:prod
 ```
 
 ## Test
 
 ```bash
-$ npm run test:e2e
+$ pnpm run test:e2e
 ```
 
 ## License
