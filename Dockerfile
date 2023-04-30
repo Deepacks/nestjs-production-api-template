@@ -1,7 +1,8 @@
-FROM node:16.18.1-alpine3.16
+FROM node:18.15.0-alpine3.17
 
 RUN npm install --location=global npm && \
-    npm install --location=global pnpm
+    npm install --location=global pnpm \
+    pnpm i -g @nestjs/cli
 
 WORKDIR /usr/src/app
 

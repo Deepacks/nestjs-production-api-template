@@ -1,11 +1,10 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-
+import { Module } from '@nestjs/common'
+import { MongooseModule } from '@nestjs/mongoose'
 import {
   RevokedToken,
   RevokedTokenSchema,
-} from '../../schemas/revokedToken.schema';
-import { RevokedTokenService } from './revokedToken.service';
+} from '../../schemas/revokedToken.schema'
+import { RevokedTokenService } from './revokedToken.service'
 
 @Module({
   imports: [

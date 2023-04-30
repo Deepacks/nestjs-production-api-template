@@ -7,11 +7,10 @@
 A prodution ready server built with [Nest](https://github.com/nestjs/nest)
 
 - MongoDB configuration
-- Default user model with email and password
+- Default user model with username and password
 - JWT based authentication
 - Docker image
 - Integration for Docker Secrets
-- End-2-end tests setup
 
 ## Installation
 

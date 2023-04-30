@@ -1,20 +1,20 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Document, Types } from 'mongoose'
 
 @Schema()
 export class RevokedToken {
-  _id: Types.ObjectId;
+  _id: Types.ObjectId
 
   @Prop({ required: true })
-  userId: string;
+  userId: string
 
   @Prop({ required: true })
-  iat: number;
+  iat: number
 
   @Prop({ required: true })
-  exp: number;
+  exp: number
 }
 
-export type RevokedTokenDocument = RevokedToken & Document;
+export type RevokedTokenDocument = RevokedToken & Document
 
-export const RevokedTokenSchema = SchemaFactory.createForClass(RevokedToken);
+export const RevokedTokenSchema = SchemaFactory.createForClass(RevokedToken)

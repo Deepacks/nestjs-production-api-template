@@ -1,1 +1,1 @@
-export const isDev: () => boolean = () => process.env.ENV === 'dev';
+export const isDev = () => process.env.NODE_ENV === 'development'

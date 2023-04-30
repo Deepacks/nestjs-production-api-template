@@ -1,12 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
 import {
   RevokedToken,
   RevokedTokenDocument,
-} from '../../schemas/revokedToken.schema';
-import { TokenDto } from './dto/token.dto';
+} from '../../schemas/revokedToken.schema'
+import { TokenDto } from './dto/token.dto'
 
 @Injectable()
 export class RevokedTokenService {
@@ -16,16 +15,16 @@ export class RevokedTokenService {
   ) {}
 
   async revoke(jwt: TokenDto) {
-    const { userId, iat, exp } = jwt;
-    await this.revokedTokenModel.create({ userId, iat, exp });
+    const { userId, iat, exp } = jwt
+    await this.revokedTokenModel.create({ userId, iat, exp })
   }
 
   async find(jwt: TokenDto): Promise<RevokedTokenDocument> {
-    const { userId, iat, exp } = jwt;
+    const { userId, iat, exp } = jwt
     return this.revokedTokenModel.findOne({
       userId,
       iat,
       exp,
-    });
+    })
   }
 }
